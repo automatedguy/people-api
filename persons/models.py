@@ -14,7 +14,7 @@ class Person(models.Model):
     _T_ = 'T'
     SEX = ((_M_, 'Male'), (_F_, 'Female'), (_T_, 'Trans'))
     sex = models.CharField(
-        max_length=2,
+        max_length=6,
         choices=SEX,
         default=_T_,
     )
