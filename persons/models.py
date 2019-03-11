@@ -20,32 +20,43 @@ class Person(models.Model):
     )
 
     class Meta:
-        db_table = '"person"'
+        db_table = 'person'
 
     def __str__(self):
         return self.person
 
 
 class Introduction(models.Model):
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    introduction = models.CharField(max_length=300)
+    person = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
+    introduction = models.CharField(max_length=300, default=None)
 
     class Meta:
-        db_table = '"introduction"'
+        db_table = 'introduction'
 
     def __str__(self):
         return self.introduction
 
 
+class Description(models.Model):
+    person = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
+    description = models.CharField(max_length=600)
+
+    class Meta:
+        db_table = 'description'
+
+    def __str__(self):
+        return self.description
+
+
 class ContactInfo(models.Model):
 
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    person = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
     street = models.CharField(max_length=20)
     street_num = models.CharField(max_length=6)
     city_code = models.CharField(max_length=6)
 
     class Meta:
-        db_table = '"contact_info"'
+        db_table = 'contact_info'
 
 
 class Country(models.Model):
@@ -54,7 +65,10 @@ class Country(models.Model):
     name = models.CharField(max_length=15, unique=True)
 
     class Meta:
-        db_table = '"country"'
+        db_table = 'country'
+
+    def __str__(self):
+        return self.name
 
 
 class City(models.Model):
@@ -62,7 +76,10 @@ class City(models.Model):
     name = models.CharField(max_length=15, primary_key=True)
 
     class Meta:
-        db_table = '"location_info"'
+        db_table = 'location_info'
+
+    def __str__(self):
+        return self.name
 
 
 class Neighborhood(models.Model):
@@ -70,18 +87,10 @@ class Neighborhood(models.Model):
     name = models.CharField(max_length=15, primary_key=True)
 
     class Meta:
-        db_table = '"neighborhood"'
-
-
-class Description(models.Model):
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    description = models.CharField(max_length=600)
-
-    class Meta:
-        db_table = '"description"'
+        db_table = 'neighborhood'
 
     def __str__(self):
-        return self.description
+        return self.name
 
 
 class Review(models.Model):
@@ -89,7 +98,7 @@ class Review(models.Model):
     review = models.CharField(max_length=600, unique=True)
 
     class Meta:
-        db_table = '"review"'
+        db_table = 'review'
 
     def __str__(self):
         return self.review
@@ -100,7 +109,10 @@ class Photo(models.Model):
     name = models.CharField(max_length=15)
 
     class Meta:
-        db_table = '"photo"'
+        db_table = 'photo'
+
+    def __str__(self):
+        return self.name
 
 
 class Videos(models.Model):
@@ -108,4 +120,7 @@ class Videos(models.Model):
     name = models.CharField(max_length=15)
 
     class Meta:
-        db_table = '"video"'
+        db_table = 'video'
+
+    def __str__(self):
+        return self.name
