@@ -3,7 +3,7 @@ from django.db import models
 
 class Person(models.Model):
 
-    user_name = models.CharField(max_length=15, primary_key=True)
+    person = models.CharField(max_length=15, primary_key=True)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     birth_date = models.DateField()
@@ -27,49 +27,85 @@ class Person(models.Model):
 
 
 class ContactInfo(models.Model):
-    pass
+
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    street = models.CharField(max_length=20)
+    street_num = models.CharField(max_length=6)
+    city_code = models.CharField(max_length=6)
 
     class Meta:
         db_table = '"contact_info"'
 
 
-class LocationInfo(models.Model):
-    pass
+class Country(models.Model):
+
+    code = models.CharField(max_length=3, primary_key=True)
+    name = models.CharField(max_length=15, unique=True)
+
+    class Meta:
+        db_table = '"country"'
+
+
+class City(models.Model):
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
+    name = models.CharField(max_length=15, primary_key=True)
 
     class Meta:
         db_table = '"location_info"'
 
 
-class Presentation(models.Model):
-    pass
+class Neighborhood(models.Model):
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    name = models.ForeignKey(max_length=15, primary_key=True)
 
     class Meta:
-        db_table = '"presentation"'
+        db_table = '"neighborhood"'
+
+
+class Introduction(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    introduction = models.CharField(max_length=300)
+
+    class Meta:
+        db_table = '"introduction"'
+
+    def __str__(self):
+        return self.introduction
 
 
 class Description(models.Model):
-    pass
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    description = models.CharField(max_length=600)
 
     class Meta:
         db_table = '"description"'
 
+    def __str__(self):
+        return self.description
+
 
 class Review(models.Model):
-    pass
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    review = models.CharField(max_length=600, unique=True)
 
     class Meta:
         db_table = '"review"'
 
+    def __str__(self):
+        return self.review
 
-class Photos(models.Model):
-    pass
+
+class Photo(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    name = models.CharField(max_length=15)
 
     class Meta:
-        db_table = '"photos"'
+        db_table = '"photo"'
 
 
 class Videos(models.Model):
-    pass
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    name = models.CharField(max_length=15)
 
     class Meta:
         db_table = '"video"'
