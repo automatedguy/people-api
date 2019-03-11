@@ -26,6 +26,17 @@ class Person(models.Model):
         return self.person
 
 
+class Introduction(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    introduction = models.CharField(max_length=300)
+
+    class Meta:
+        db_table = '"introduction"'
+
+    def __str__(self):
+        return self.introduction
+
+
 class ContactInfo(models.Model):
 
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
@@ -60,17 +71,6 @@ class Neighborhood(models.Model):
 
     class Meta:
         db_table = '"neighborhood"'
-
-
-class Introduction(models.Model):
-    person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    introduction = models.CharField(max_length=300)
-
-    class Meta:
-        db_table = '"introduction"'
-
-    def __str__(self):
-        return self.introduction
 
 
 class Description(models.Model):
