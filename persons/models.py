@@ -56,7 +56,7 @@ class City(models.Model):
 
 class Neighborhood(models.Model):
     city = models.ForeignKey(City, on_delete=models.CASCADE)
-    name = models.ForeignKey(max_length=15, primary_key=True)
+    name = models.CharField(max_length=15, primary_key=True)
 
     class Meta:
         db_table = '"neighborhood"'

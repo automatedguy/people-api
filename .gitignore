@@ -1,1 +1,13 @@
 .idea/
+.installed.cfg
+bin
+__pycache__
+dist
+downloads
+eggs
+parts
+lib
+lib64
+*.pyc
+*.pyo
+db.sqlite3
