@@ -23,7 +23,7 @@ class Person(models.Model):
         db_table = '"person"'
 
     def __str__(self):
-        return self.user_name
+        return self.person
 
 
 class ContactInfo(models.Model):
