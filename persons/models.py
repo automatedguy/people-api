@@ -1,5 +1,4 @@
 from django.db import models
-from model_utils import Choices
 
 
 class Person(models.Model):
@@ -10,8 +9,15 @@ class Person(models.Model):
     birth_date = models.DateField()
     creation_date = models.DateField()
     active = models.BooleanField()
-    SEX = Choices('M', 'F')
-    sex = models.CharField(choices=SEX, default=SEX.M, max_length=1)
+    _M_ = 'M'
+    _F_ = 'F'
+    _T_ = 'T'
+    SEX = ((_M_, 'Male'), (_F_, 'Female'), (_T_, 'Trans'))
+    sex = models.CharField(
+        max_length=2,
+        choices=SEX,
+        default=_T_,
+    )
 
     class Meta:
         db_table = '"person"'
