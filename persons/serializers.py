@@ -16,3 +16,13 @@ class PersonSerializer(serializers.ModelSerializer):
         )
 
         model = models.Person
+
+
+class IntroductionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = (
+            'id',
+            'person',
+            'introduction'
+        )
