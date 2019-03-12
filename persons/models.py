@@ -54,12 +54,25 @@ class Description(models.Model):
 class ContactInfo(models.Model):
 
     person = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
+    mobile = models.CharField(max_length=20)
+    home = models.CharField(max_length=20)
+    email = models.CharField(max_length=30)
+    facebook = models.CharField(max_length=30)
+    instagram = models.CharField(max_length=30)
+
+    class Meta:
+        db_table = 'contact_info'
+
+
+class LocationInfo(models.Model):
+
+    person = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
     street = models.CharField(max_length=20)
     street_num = models.CharField(max_length=6)
     city_code = models.CharField(max_length=6)
 
     class Meta:
-        db_table = 'contact_info'
+        db_table = 'location_info'
 
 
 class Country(models.Model):
@@ -79,7 +92,7 @@ class City(models.Model):
     name = models.CharField(max_length=15, primary_key=True)
 
     class Meta:
-        db_table = 'location_info'
+        db_table = 'city'
 
     def __str__(self):
         return self.name

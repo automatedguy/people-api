@@ -1,8 +1,8 @@
-from rest_framework import serializers
+from rest_framework.serializers import ModelSerializer
 from persons import models
 
 
-class PersonSerializer(serializers.ModelSerializer):
+class PersonSerializer(ModelSerializer):
 
     class Meta:
         fields = (
@@ -12,13 +12,14 @@ class PersonSerializer(serializers.ModelSerializer):
             'last_name',
             'birth_date',
             'creation_date',
-            'active'
+            'active',
+            'sex'
         )
 
         model = models.Person
 
 
-class IntroductionSerializer(serializers.ModelSerializer):
+class IntroductionSerializer(ModelSerializer):
 
     class Meta:
         fields = (
@@ -30,7 +31,7 @@ class IntroductionSerializer(serializers.ModelSerializer):
         model = models.Introduction
 
 
-class DescriptionSerializer(serializers.ModelSerializer):
+class DescriptionSerializer(ModelSerializer):
 
     class Meta:
         fields = (
@@ -40,3 +41,17 @@ class DescriptionSerializer(serializers.ModelSerializer):
         )
 
         model = models.Description
+
+
+class ContactInfoSerializer(ModelSerializer):
+
+    class Meta:
+        fields = (
+            'mobile',
+            'home',
+            'email',
+            'facebook',
+            'instagram'
+        )
+
+        model = models.ContactInfo

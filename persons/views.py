@@ -1,4 +1,3 @@
-from rest_framework import request
 from rest_framework.viewsets import ModelViewSet
 
 from .models import Person, Introduction, Description
