@@ -9,17 +9,18 @@ class PersonViewSet(ModelViewSet):
     queryset = Person.objects.all()
 
 
-class IntroductionViewSet(ModelViewSet):
+class PersonFilterViewSet(ModelViewSet):
+
+    def get_queryset(self, *args, **kwargs):
+        return self.queryset.filter(person=self.kwargs.get('person_pk'))
+
+
+class IntroductionViewSet(PersonFilterViewSet):
     serializer_class = IntroductionSerializer
     queryset = Introduction.objects.all()
 
-    def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(person=self.kwargs.get('person_pk'))
 
-
-class DescriptionViewSet(ModelViewSet):
+class DescriptionViewSet(PersonFilterViewSet):
     serializer_class = DescriptionSerializer
     queryset = Description.objects.all()
 
-    def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(person=self.kwargs.get('person_pk'))
