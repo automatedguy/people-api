@@ -1,14 +1,14 @@
-from rest_framework import generics
+from rest_framework.viewsets import ModelViewSet
 
-from persons import models
-from . import serializers
-
-
-class ListPerson(generics.ListCreateAPIView):
-    queryset = models.Person.objects.all()
-    serializer_class = serializers.PersonSerializer
+from .models import Person, Introduction
+from .serializers import PersonSerializer, IntroductionSerializer
 
 
-class DetailPerson(generics.RetrieveUpdateDestroyAPIView):
-    queryset = models.Person.objects.all()
-    serializer_class = serializers.PersonSerializer
+class PersonViewSet(ModelViewSet):
+    serializer_class = PersonSerializer
+    queryset = Person.objects.all()
+
+
+class IntroductionViewSet(ModelViewSet):
+    serializer_class = IntroductionSerializer
+    queryset = Introduction.objects.all()

@@ -28,11 +28,12 @@ class Person(models.Model):
 
 
 class Introduction(models.Model):
-    person = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
+    person = models.OneToOneField(Person, on_delete=models.CASCADE, unique=True)
     introduction = models.CharField(max_length=300, default=None)
 
     class Meta:
         db_table = 'introduction'
+        ordering = ['-person']
 
     def __str__(self):
         return self.introduction
