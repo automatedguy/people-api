@@ -7,7 +7,7 @@ router = routers.SimpleRouter()
 router.register(r'', PersonViewSet)
 
 nested_router = routers.NestedSimpleRouter(router, r'', lookup='person')
-nested_router.register(r'introduction', IntroductionViewSet)
+nested_router.register(r'introduction', IntroductionViewSet, basename='introduction')
 nested_router.register(r'description', DescriptionViewSet)
 
 urlpatterns = [
