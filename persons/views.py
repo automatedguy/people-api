@@ -11,8 +11,10 @@ class PersonViewSet(ModelViewSet):
 
 class PersonFilterViewSet(ModelViewSet):
 
+    _filter_ = 'person_pk'
+
     def get_queryset(self, *args, **kwargs):
-        return self.queryset.filter(person=self.kwargs.get('person_pk'))
+        return self.queryset.filter(person=self.kwargs.get(self._filter_))
 
 
 class IntroductionViewSet(PersonFilterViewSet):
