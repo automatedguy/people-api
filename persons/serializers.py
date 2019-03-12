@@ -26,3 +26,5 @@ class IntroductionSerializer(serializers.ModelSerializer):
             'person',
             'introduction'
         )
+
+        model = models.Introduction
