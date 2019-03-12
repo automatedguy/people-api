@@ -40,11 +40,12 @@ class Introduction(models.Model):
 
 
 class Description(models.Model):
-    person = models.OneToOneField(Person, on_delete=models.CASCADE, primary_key=True)
+    person = models.OneToOneField(Person, on_delete=models.CASCADE, unique=True)
     description = models.CharField(max_length=600)
 
     class Meta:
         db_table = 'description'
+        ordering = ['-person']
 
     def __str__(self):
         return self.description

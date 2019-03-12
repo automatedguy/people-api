@@ -17,21 +17,16 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework_nested import routers
 
-from persons.views import PersonViewSet, IntroductionViewSet
 from users import views
 
 router = routers.SimpleRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
-router.register(r'persons', PersonViewSet)
-
-introduction_router = routers.NestedSimpleRouter(router, r'persons', lookup='person')
-introduction_router.register(r'introduction', IntroductionViewSet)
 
 
 urlpatterns = [
     path('', include(router.urls)),
-    path('', include(introduction_router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    path('admin/', admin.site.urls),
+    path('', admin.site.urls),
+    path('persons/', include('persons.urls')),
 ]

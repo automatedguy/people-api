@@ -28,3 +28,15 @@ class IntroductionSerializer(serializers.ModelSerializer):
         )
 
         model = models.Introduction
+
+
+class DescriptionSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        fields = (
+            'id',
+            'person',
+            'description'
+        )
+
+        model = models.Description
