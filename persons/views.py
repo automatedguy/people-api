@@ -1,7 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 
-from .models import Person, Introduction, Description, ContactInfo
-from .serializers import PersonSerializer, IntroductionSerializer, DescriptionSerializer, ContactInfoSerializer
+from .models import Person, Introduction, Description, ContactInfo, Photo
+from .serializers import PersonSerializer, IntroductionSerializer, DescriptionSerializer, ContactInfoSerializer, \
+    PhotoSerializer
 
 
 class PersonViewSet(ModelViewSet):
@@ -32,3 +33,6 @@ class ContactInfoViewSet(PersonFilterViewSet):
     queryset = ContactInfo.objects.all()
 
 
+class PhotoViewSet(PersonFilterViewSet):
+    serializer_class = PhotoSerializer
+    queryset = Photo.objects.all()

@@ -122,7 +122,7 @@ class Review(models.Model):
 
 class Photo(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    photo = models.CharField(max_length=15)
+    photo = models.ImageField(upload_to='images/', null=True, blank=True)
 
     class Meta:
         db_table = 'photo'
