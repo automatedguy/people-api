@@ -1,8 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
 
-from .models import Person, Introduction, Description, ContactInfo, Photo
+from .models import Person, Introduction, Description, ContactInfo, Photo, Video
 from .serializers import PersonSerializer, IntroductionSerializer, DescriptionSerializer, ContactInfoSerializer, \
-    PhotoSerializer
+    PhotoSerializer, VideoSerializer
 
 
 class PersonViewSet(ModelViewSet):
@@ -36,3 +36,8 @@ class ContactInfoViewSet(PersonFilterViewSet):
 class PhotoViewSet(PersonFilterViewSet):
     serializer_class = PhotoSerializer
     queryset = Photo.objects.all()
+
+
+class VideoViewSet(PersonFilterViewSet):
+    serializer_class = VideoSerializer
+    queryset = Video.objects.all()

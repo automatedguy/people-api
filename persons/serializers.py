@@ -69,3 +69,15 @@ class PhotoSerializer(ModelSerializer):
         )
 
         model = models.Photo
+
+
+class VideoSerializer(ModelSerializer):
+
+    class Meta:
+        fields = (
+            'id',
+            'person',
+            'video'
+        )
+
+        model = models.Video

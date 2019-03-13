@@ -128,15 +128,15 @@ class Photo(models.Model):
         db_table = 'photo'
 
     def __str__(self):
-        return self.name
+        return self.person + ": " + str(self.photo)
 
 
-class Videos(models.Model):
+class Video(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    video = models.CharField(max_length=15)
+    video = models.FileField(upload_to='videos/', null=True, verbose_name="")
 
     class Meta:
         db_table = 'video'
 
     def __str__(self):
-        return self.name
+        return self.person + ": " + str(self.video)
