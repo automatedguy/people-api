@@ -82,6 +82,7 @@ class Country(models.Model):
 
     class Meta:
         db_table = 'country'
+        ordering = ['-name']
 
     def __str__(self):
         return self.name
@@ -93,6 +94,7 @@ class City(models.Model):
 
     class Meta:
         db_table = 'city'
+        ordering = ['-country']
 
     def __str__(self):
         return self.name
@@ -104,6 +106,7 @@ class Neighborhood(models.Model):
 
     class Meta:
         db_table = 'neighborhood'
+        ordering = ['-city']
 
     def __str__(self):
         return self.name
@@ -115,6 +118,7 @@ class Review(models.Model):
 
     class Meta:
         db_table = 'review'
+        ordering = ['-person']
 
     def __str__(self):
         return self.review
@@ -126,9 +130,22 @@ class Photo(models.Model):
 
     class Meta:
         db_table = 'photo'
+        ordering = ['-person']
 
     def __str__(self):
         return self.person + ": " + str(self.photo)
+
+
+class PhotoProfile(models.Model):
+    person = models.OneToOneField(Person, on_delete=models.CASCADE)
+    photo_profile = models.ImageField(upload_to='images/profiles/', null=True, blank=True)
+
+    class Meta:
+        db_table = 'photo_profile'
+        ordering = ['-person']
+
+    def __str__(self):
+        return self.person + ": " + str(self.photo_profile)
 
 
 class Video(models.Model):
@@ -137,6 +154,7 @@ class Video(models.Model):
 
     class Meta:
         db_table = 'video'
+        ordering = ['-person']
 
     def __str__(self):
         return self.person + ": " + str(self.video)

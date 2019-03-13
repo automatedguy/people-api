@@ -18,11 +18,14 @@ from django.urls import path, include
 from rest_framework_nested import routers
 from django.conf import settings
 from django.conf.urls.static import static
+
+from persons.views import PhotoProfileViewSet
 from users import views
 
 router = routers.SimpleRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
+router.register(r'photoprofiles', PhotoProfileViewSet)
 
 
 urlpatterns = [
