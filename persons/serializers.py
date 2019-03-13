@@ -47,6 +47,8 @@ class ContactInfoSerializer(ModelSerializer):
 
     class Meta:
         fields = (
+            'id',
+            'person'
             'mobile',
             'home',
             'email',
@@ -55,3 +57,15 @@ class ContactInfoSerializer(ModelSerializer):
         )
 
         model = models.ContactInfo
+
+
+class PhotoSerializer(ModelSerializer):
+
+    class Meta:
+        fields = (
+            'id',
+            'person',
+            'photo'
+        )
+
+        model = models.Photo

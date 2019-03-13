@@ -122,7 +122,7 @@ class Review(models.Model):
 
 class Photo(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    name = models.CharField(max_length=15)
+    photo = models.CharField(max_length=15)
 
     class Meta:
         db_table = 'photo'
@@ -133,7 +133,7 @@ class Photo(models.Model):
 
 class Videos(models.Model):
     person = models.ForeignKey(Person, on_delete=models.CASCADE)
-    name = models.CharField(max_length=15)
+    video = models.CharField(max_length=15)
 
     class Meta:
         db_table = 'video'
