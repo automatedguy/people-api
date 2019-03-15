@@ -27,10 +27,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CORS_ORIGIN_ALLOW_ALL = True
+
+APPEND_SLASH = True
 
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     'persons',
     'rest_framework',
     'django.contrib.admin',
@@ -42,12 +46,13 @@ INSTALLED_APPS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'persons.pagination.CustomPagination',
     'PAGE_SIZE': 20,
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny',]
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
