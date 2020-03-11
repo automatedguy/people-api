@@ -13,3 +13,4 @@ lib64
 db.sqlite3
 migrations
 images
+people-api/
